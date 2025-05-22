@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Jupyter Notebooks (if used)
+.ipynb_checkpoints/
+
+# Environment
+.venv/
+venv/
+.env
+
+# macOS
+.DS_Store
+
+# Model files
+*.pkl
+*.joblib
+
+# Logs
+*.log
+
+# VS Code or other IDE settings
+.vscode/
+.idea/
+
+# Flask cache
+instance/
+*.db
+
+# Byte-compiled files
+*.pyc
+
+# OS file metadata
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.gitattributes
+
