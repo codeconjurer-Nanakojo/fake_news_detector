@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fake News Detector</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fake News Detector AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>Fake News Detector AI</h1>
+    </header>
 
-    <div class="container">
-        <header>
-            <h1>📰 Fake News Detector</h1>
-            <p class="subtitle">Detect AI-generated or misleading content using machine learning</p>
-        </header>
-
-        <form method="POST" id="news-form">
-            <label for="news">Paste News Article Text:</label>
-            <textarea id="news" name="news" placeholder="Paste your news content here..." required></textarea>
-
-            <div class="form-actions">
-                <button type="submit">Analyze</button>
-                <button type="button" id="clear-btn">Clear</button>
-            </div>
-        </form>
-
-        <div id="loading">🔍 Analyzing content, please wait...</div>
-
-{% if prediction is not none %}
-    <div class="result-box">
-        <p class="result-text">{{ prediction }}</p>
-        <button id="copy-btn">Copy Result</button>
-    </div>
+    <form method="POST" id="news-form">
+      <label for="news">Paste news article text here:</label>
+      <textarea name="news" id="news" placeholder="Paste news article text here..." required>
+{% if highlighted_text %}
+{{ highlighted_text|safe }}
+{% else %}
+{{ input_text }}
 {% endif %}
+</textarea>
 
+      <div class="form-actions">
+        <button type="submit">Analyze</button>
+        <button type="button" id="clear-btn">Clear</button>
+      </div>
+    </form>
 
-        <footer>
-            &copy; 2025 Fake News Detector AI | Built with Flask & 💡
-        </footer>
-    </div>
+    <div id="loading" style="display:none;">Analyzing... Please wait.</div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% if prediction %}
+      <div class="result-box">
+        <div class="result-text"><strong>Prediction:</strong> {{ prediction }}</div>
+        {% if confidence %}
+        <div class="confidence-text"><strong>Confidence:</strong> {{ confidence }}%</div>
+        {% endif %}
+
+        {% if highlighted_preview %}
+        <div class="highlighted-preview" style="margin-top: 20px; background: #161B22; padding: 15px; border-radius: 10px; white-space: pre-wrap; color: #F8F8F8;">
+          <strong>Highlighted Keywords Preview:</strong>
+          <p>{{ highlighted_preview | safe }}</p>
+        </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

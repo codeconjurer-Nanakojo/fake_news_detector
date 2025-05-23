@@ -35,3 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("news-form");
+    const loading = document.getElementById("loading");
+    const clearBtn = document.getElementById("clear-btn");
+
+    form.addEventListener("submit", () => {
+        loading.style.display = "block";
+    });
+
+    clearBtn.addEventListener("click", () => {
+        document.getElementById("news").value = "";
+        loading.style.display = "none";
+    });
+});

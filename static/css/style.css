@@ -112,6 +112,26 @@ footer {
     font-size: 0.8rem;
     color: #666;
 }
+mark {
+  background-color: #00ffd1aa;
+  color: #000;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-weight: 600;
+}
+.confidence-text {
+  margin-top: 10px;
+  color: #00ff88;
+  font-size: 1.1rem;
+}
+.highlighted-preview mark {
+  background-color: #00ffd1aa;
+  color: #000;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-weight: 600;
+}
+
 
 /* Animations */
 @keyframes fadeIn {
