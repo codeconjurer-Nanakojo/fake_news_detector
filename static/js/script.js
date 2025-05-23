@@ -6,24 +6,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-btn");
     const resultText = document.querySelector(".result-text");
 
-    // Show loading on submit
-    form.addEventListener("submit", () => {
-        loading.style.display = "block";
-    });
+    // Show loading during form submission
+    if (form) {
+        form.addEventListener("submit", () => {
+            if (loading) loading.style.display = "block";
+        });
+    }
 
-    // Clear textarea
-    clearBtn.addEventListener("click", () => {
-        textarea.value = "";
-    });
+    // Clear the textarea
+    if (clearBtn && textarea) {
+        clearBtn.addEventListener("click", () => {
+            textarea.value = "";
+        });
+    }
 
-    // Copy prediction result
+    // Copy the result to clipboard
     if (copyBtn && resultText) {
         copyBtn.addEventListener("click", () => {
-            navigator.clipboard.writeText(resultText.textContent.trim()).then(() => {
-                copyBtn.textContent = "Copied!";
+            const text = resultText.textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = "✅ Copied!";
                 setTimeout(() => {
                     copyBtn.textContent = "Copy Result";
                 }, 2000);
+            }).catch(() => {
+                copyBtn.textContent = "❌ Failed to copy";
             });
         });
     }
