@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered Fake News Detection">
+    <meta name="author" content="Your Name">
+    <title>Fake News Detector AI</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fake News Detector AI</h1>
+            <p class="subtitle">Leverage machine learning to detect misinformation in real time</p>
+        </header>
+
+        <main>
+            <form method="POST" id="news-form">
+                <label for="news">Enter News Text</label>
+                <textarea name="news" id="news" placeholder="Paste or type news content here..." required></textarea>
+                <div class="form-actions">
+                    <button type="submit">Analyze</button>
+                    <button type="button" id="clear-btn">Clear</button>
+                </div>
+            </form>
+
+            <div id="loading" class="hidden">Analyzing content... Please wait.</div>
+
+            {% if prediction %}
+            <div id="result-container" class="result-box">
+                <h2>Prediction Result</h2>
+                <p class="result-text">{{ prediction }}</p>
+                <button id="copy-btn">Copy Result</button>
+            </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>&copy; {{ year }} Fake News Detector AI. Built with Flask and ❤️.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
