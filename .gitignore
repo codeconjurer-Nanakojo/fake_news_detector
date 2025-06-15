@@ -17,7 +17,7 @@ venv/
 .DS_Store
 
 # Model files
-*.pkl
+
 *.joblib
 
 # Logs
